@@ -66,7 +66,7 @@ module TPX
         res << (acc.pop)
       end
 
-      res
+      res.to_h
     end
 
     def shutdown
