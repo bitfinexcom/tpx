@@ -12,8 +12,7 @@ module TPX
     end
 
     def resolve
-      res = @exec.schedule_m_read(@q, @cnt)
-      res.map{ |a| a[1] }
+      @exec.schedule_m_read(@q, @cnt)
     end
   end
 
@@ -66,7 +65,7 @@ module TPX
         res << (acc.pop)
       end
 
-      res.sort{ |x| x[0] }
+      res
     end
 
     def shutdown
