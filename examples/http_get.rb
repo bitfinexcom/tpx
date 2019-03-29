@@ -4,7 +4,7 @@ CWD = File.expand_path(File.dirname(__FILE__))
 
 require_relative "#{CWD}/../lib/tpx"
 
-pool = TPX.new(10)
+pool = TPX::Exec.new(10)
 
 t1 = Time.now
 res = pool.schedule('test') do |args|
