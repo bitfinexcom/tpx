@@ -8,11 +8,11 @@ t1 = Time.now
 
 prom = TPX::Prom.new(pool)
 
-prom.add([1, 2]) do |a1, a2|
+prom.add(['foo', 1, 2]) do |a1, a2|
   a1 * a2
 end
 
-prom.add([3, 2]) do |a1, a2|
+prom.add(['bar', 3, 2]) do |a1, a2|
   a1 * a2
 end
 

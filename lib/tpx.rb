@@ -7,7 +7,8 @@ module TPX
     end
 
     def add(args, &block)
-      @exec.schedule_m_add([@q, @cnt, args], &block)
+      jid = args.shift
+      @exec.schedule_m_add([@q, jid, args], &block)
       @cnt += 1
     end
 
@@ -30,8 +31,8 @@ module TPX
           catch(:exit) do
             loop do
               begin
-                jix, job, args, acc = @jobs.pop
-                acc << [jix, job.call(*args)]
+                jid, job, args, acc = @jobs.pop
+                acc << [jid, job.call(*args)]
               rescue => e
                 acc << 'ERROR'
               end
@@ -53,9 +54,9 @@ module TPX
 
     def schedule_m_add(args, &block)
       acc = args[0]
-      jix = args[1]
+      jid = args[1]
       args = args[2]
-      @jobs << [jix, block, args, acc]
+      @jobs << [jid, block, args, acc]
     end
 
     def schedule_m_read(acc, n)
